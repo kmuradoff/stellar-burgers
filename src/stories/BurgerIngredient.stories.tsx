@@ -1,15 +1,16 @@
 import React from 'react';
-import { BurgerIngredientUI } from '@ui';
+import { BurgerIngredientUI } from '../components/ui/burger-ingredient/burger-ingredient';
 import type { Meta, StoryObj } from '@storybook/react';
+import { TBurgerIngredientUIProps } from '../components/ui/burger-ingredient/type';
 
 const meta = {
-  title: 'Example/BurgerIngredient',
+  title: 'UI/BurgerIngredient',
   component: BurgerIngredientUI,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
-    layout: 'fullscreen'
+    layout: 'centered'
   },
   decorators: [
     (Story) => (
@@ -47,7 +48,6 @@ export const DefaultIngredient: Story = {
         search: '',
         state: null
       }
-    },
-    handleAdd: () => {}
+    }
   }
 };
