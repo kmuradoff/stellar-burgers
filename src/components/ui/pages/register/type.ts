@@ -5,4 +5,6 @@ export type RegisterUIProps = PageUIProps & {
   password: string;
   userName: string;
   setValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  errorText?: string;
+  onSubmit: (e: React.FormEvent) => void;
 };

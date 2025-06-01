@@ -12,6 +12,7 @@ export const ResetPassword: FC = () => {
   });
   const [token, setToken] = useState('');
   const [error, setError] = useState<Error | null>(null);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -19,7 +20,8 @@ export const ResetPassword: FC = () => {
     resetPasswordApi({ password: values.password, token })
       .then(() => {
         localStorage.removeItem('resetPassword');
-        navigate('/login');
+        setSuccess(true);
+        setTimeout(() => navigate('/login'), 1500);
       })
       .catch((err) => setError(err));
   };
@@ -31,13 +33,20 @@ export const ResetPassword: FC = () => {
   }, [navigate]);
 
   return (
-    <ResetPasswordUI
-      errorText={error?.message}
-      password={values.password}
-      token={token}
-      setValue={handleChange}
-      setToken={setToken}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      <ResetPasswordUI
+        errorText={error?.message}
+        password={values.password}
+        token={token}
+        setValue={handleChange}
+        setToken={setToken}
+        handleSubmit={handleSubmit}
+      />
+      {success && (
+        <div data-testid="success-message" style={{textAlign: 'center', marginTop: 16, color: 'green'}}>
+          Пароль успешно изменён! Перенаправление на вход...
+        </div>
+      )}
+    </>
   );
 };

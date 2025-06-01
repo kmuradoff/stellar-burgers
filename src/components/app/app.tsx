@@ -17,14 +17,15 @@ import { useDispatch, useSelector } from '../../services/store';
 import { useEffect, useMemo, useState } from 'react';
 import { fetchIngredients } from '../../services/slices/Ingredients-slice';
 
-import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
+import { IngredientDetails, Modal, OrderInfo } from '@components';
+import { AppHeaderUI } from '../ui/app-header';
 import {
   getOrders,
   isLoadingSelector,
   orderSelector,
   removeBurger
 } from '../../services/slices/order-slice';
-import { getUser } from '../../services/slices/user-slice';
+import { getUser, getUserSelector, logout } from '../../services/slices/user-slice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -32,8 +33,14 @@ const App = () => {
   const location = useLocation();
   const orderNumder = useSelector(orderSelector);
   const orderIsLoading = useSelector(isLoadingSelector);
+  const user = useSelector(getUserSelector);
 
   const backgroundLocation = location.state?.background;
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -57,7 +64,7 @@ const App = () => {
   return (
     <>
       <div className={styles.app}>
-        <AppHeader />
+        <AppHeaderUI userName={user?.name} handleLogout={handleLogout} />
         <Routes location={backgroundLocation || location}>
           <Route path='/' element={<ConstructorPage />} />
           <Route path='/feed' element={<Feed />} />
