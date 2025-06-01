@@ -4,12 +4,12 @@ import {
   registerUserApi,
   getUserApi,
   updateUserApi,
+  logoutApi,
   TRegisterData,
-  TLoginData,
-  logoutApi
-} from '@api';
+  TLoginData
+} from '../../utils/burger-api';
 import { deleteCookie, setCookie } from '../../utils/cookie';
-import { TUser } from '@utils-types';
+import { TUser } from '../../utils/types';
 import { USER_SLICE_NAME } from '../../utils/constants';
 
 export const registerUser = createAsyncThunk(
@@ -51,7 +51,7 @@ export const getUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'updateUser/post',
-  async (user: TRegisterData, { rejectWithValue }) => {
+  async (user: Partial<TRegisterData>, { rejectWithValue }) => {
     const reply = await updateUserApi(user);
     if (!reply.success) {
       return rejectWithValue(reply);

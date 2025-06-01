@@ -33,7 +33,7 @@ export const constructorSlice = createSlice({
       })
     },
 
-    removeIngredient: (state, action: PayloadAction<string>) => {
+    removeIngredient: (state, action) => {
       state.ingredients = state.ingredients.filter(
         (ingredient) => ingredient.id !== action.payload
       );
