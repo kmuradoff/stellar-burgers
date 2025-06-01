@@ -43,7 +43,10 @@ export const ResetPassword: FC = () => {
         handleSubmit={handleSubmit}
       />
       {success && (
-        <div data-testid="success-message" style={{textAlign: 'center', marginTop: 16, color: 'green'}}>
+        <div
+          data-testid='success-message'
+          style={{ textAlign: 'center', marginTop: 16, color: 'green' }}
+        >
           Пароль успешно изменён! Перенаправление на вход...
         </div>
       )}

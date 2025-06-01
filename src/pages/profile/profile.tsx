@@ -1,6 +1,10 @@
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from '../../services/store';
-import { getUserSelector, getIsAuthenticatedSelector, updateUser } from '../../services/slices/user-slice';
+import {
+  getUserSelector,
+  getIsAuthenticatedSelector,
+  updateUser
+} from '../../services/slices/user-slice';
 import { ProfileUI } from '@ui-pages';
 import { useNavigate } from 'react-router-dom';
 

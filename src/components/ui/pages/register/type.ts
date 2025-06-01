@@ -1,10 +1,6 @@
-import { Dispatch, SetStateAction } from 'react';
-import { PageUIProps } from '../common-type';
+import { SyntheticEvent } from 'react';
 
-export type RegisterUIProps = PageUIProps & {
-  password: string;
-  userName: string;
-  setValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+export type RegisterUIProps = {
   errorText?: string;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: SyntheticEvent) => void;
 };

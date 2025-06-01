@@ -2,7 +2,13 @@ import store from '../store';
 import { constructorSlice } from '../slices/constructor-slice';
 import { ingredientSlice, fetchIngredients } from '../slices/Ingredients-slice';
 import { orderSlice, fetchOrder } from '../slices/order-slice';
-import { userSlice, loginUser, registerUser, logout, updateUser } from '../slices/user-slice';
+import {
+  userSlice,
+  loginUser,
+  registerUser,
+  logout,
+  updateUser
+} from '../slices/user-slice';
 import { feedSlice, fetchFeed } from '../slices/feed-slice';
 import { TIngredient, TMoveIngredient, TOrdersData } from '../../utils/types';
 
@@ -31,7 +37,9 @@ describe('Redux Store', () => {
     it('should handle addToBurger', () => {
       store.dispatch(constructorSlice.actions.addToBurger(mockIngredient));
       const state = store.getState().constructorBurger;
-      expect(state.ingredients).toContainEqual(expect.objectContaining({ _id: '1' }));
+      expect(state.ingredients).toContainEqual(
+        expect.objectContaining({ _id: '1' })
+      );
     });
 
     it('should handle removeIngredient', () => {
@@ -40,12 +48,16 @@ describe('Redux Store', () => {
       const added = store.getState().constructorBurger.ingredients[0];
       store.dispatch(constructorSlice.actions.removeIngredient(added.id));
       const state = store.getState().constructorBurger;
-      expect(state.ingredients).not.toContainEqual(expect.objectContaining({ _id: '1' }));
+      expect(state.ingredients).not.toContainEqual(
+        expect.objectContaining({ _id: '1' })
+      );
     });
 
     it('should handle moveIngredient', () => {
       store.dispatch(constructorSlice.actions.addToBurger(mockIngredient));
-      store.dispatch(constructorSlice.actions.addToBurger({ ...mockIngredient, _id: '2' }));
+      store.dispatch(
+        constructorSlice.actions.addToBurger({ ...mockIngredient, _id: '2' })
+      );
       const mockMove = { index: 0, direction: 'down' };
       store.dispatch(constructorSlice.actions.moveIngredient(mockMove));
       const state = store.getState().constructorBurger;
@@ -84,7 +96,9 @@ describe('Redux Store', () => {
           image_large: 'test-large.jpg'
         }
       ];
-      store.dispatch(fetchIngredients.fulfilled(mockIngredients, '', undefined));
+      store.dispatch(
+        fetchIngredients.fulfilled(mockIngredients, '', undefined)
+      );
       const state = store.getState().ingredients;
       expect(state.ingredients).toEqual(mockIngredients);
       expect(state.isLoading).toBe(false);
@@ -93,7 +107,9 @@ describe('Redux Store', () => {
 
     it('should handle fetchIngredients.rejected', () => {
       const error = 'Failed to fetch ingredients';
-      store.dispatch(fetchIngredients.rejected(new Error(error), '', undefined));
+      store.dispatch(
+        fetchIngredients.rejected(new Error(error), '', undefined)
+      );
       const state = store.getState().ingredients;
       expect(state.isLoading).toBe(false);
       expect(state.error).toBe(error);
@@ -123,7 +139,9 @@ describe('Redux Store', () => {
         email: 'test@example.com',
         name: 'Test User'
       };
-      store.dispatch(loginUser.fulfilled(mockUser, '', { email: '', password: '' }));
+      store.dispatch(
+        loginUser.fulfilled(mockUser, '', { email: '', password: '' })
+      );
       const state = store.getState().user;
       expect(state.user).toEqual(mockUser);
       expect(state.isAuthChecked).toBe(true);
@@ -133,7 +151,9 @@ describe('Redux Store', () => {
 
     it('should handle login.rejected', () => {
       const error = 'Failed to login';
-      store.dispatch(loginUser.rejected(new Error(error), '', { email: '', password: '' }));
+      store.dispatch(
+        loginUser.rejected(new Error(error), '', { email: '', password: '' })
+      );
       const state = store.getState().user;
       expect(state.isAuthChecked).toBe(true);
       expect(state.isAuthenticated).toBe(false);
@@ -141,7 +161,9 @@ describe('Redux Store', () => {
     });
 
     it('should handle register.pending', () => {
-      store.dispatch(registerUser.pending('', { email: '', password: '', name: '' }));
+      store.dispatch(
+        registerUser.pending('', { email: '', password: '', name: '' })
+      );
       const state = store.getState().user;
       expect(state.isAuthChecked).toBe(false);
       expect(state.isAuthenticated).toBe(false);
@@ -158,7 +180,13 @@ describe('Redux Store', () => {
           name: 'Test User'
         }
       };
-      store.dispatch(registerUser.fulfilled(mockUser, '', { email: '', password: '', name: '' }));
+      store.dispatch(
+        registerUser.fulfilled(mockUser, '', {
+          email: '',
+          password: '',
+          name: ''
+        })
+      );
       const state = store.getState().user;
       expect(state.user).toEqual(mockUser.user);
       expect(state.isAuthChecked).toBe(true);
@@ -168,7 +196,13 @@ describe('Redux Store', () => {
 
     it('should handle register.rejected', () => {
       const error = 'Failed to register';
-      store.dispatch(registerUser.rejected(new Error(error), '', { email: '', password: '', name: '' }));
+      store.dispatch(
+        registerUser.rejected(new Error(error), '', {
+          email: '',
+          password: '',
+          name: ''
+        })
+      );
       const state = store.getState().user;
       expect(state.isAuthChecked).toBe(true);
       expect(state.isAuthenticated).toBe(false);
@@ -202,14 +236,18 @@ describe('Redux Store', () => {
           name: 'Updated User'
         }
       };
-      store.dispatch(updateUser.fulfilled(mockUser, '', { email: '', name: '' }));
+      store.dispatch(
+        updateUser.fulfilled(mockUser, '', { email: '', name: '' })
+      );
       const state = store.getState().user;
       expect(state.user).toEqual(mockUser.user);
     });
 
     it('should handle updateUser.rejected', () => {
       const error = 'Failed to update user';
-      store.dispatch(updateUser.rejected(new Error(error), '', { email: '', name: '' }));
+      store.dispatch(
+        updateUser.rejected(new Error(error), '', { email: '', name: '' })
+      );
       const state = store.getState().user;
       expect(state.error).toBe(error);
     });
@@ -257,4 +295,4 @@ describe('Redux Store', () => {
       expect(state.error).toBe(error);
     });
   });
-}); 
+});

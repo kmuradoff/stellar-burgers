@@ -25,7 +25,11 @@ import {
   orderSelector,
   removeBurger
 } from '../../services/slices/order-slice';
-import { getUser, getUserSelector, logout } from '../../services/slices/user-slice';
+import {
+  getUser,
+  getUserSelector,
+  logout
+} from '../../services/slices/user-slice';
 
 const App = () => {
   const dispatch = useDispatch();

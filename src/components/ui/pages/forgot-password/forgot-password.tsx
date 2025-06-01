@@ -38,13 +38,19 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
     setTouched(true);
     setError('');
     setSuccess('');
-    
+
     if (validate()) {
       try {
         await handleSubmit(e);
-        setSuccess('Инструкции по восстановлению пароля отправлены на ваш email');
+        setSuccess(
+          'Инструкции по восстановлению пароля отправлены на ваш email'
+        );
       } catch (error) {
-        setError(error instanceof Error ? error.message : 'Произошла ошибка при восстановлении пароля');
+        setError(
+          error instanceof Error
+            ? error.message
+            : 'Произошла ошибка при восстановлении пароля'
+        );
       }
     }
   };
@@ -52,12 +58,14 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
   return (
     <main className={styles.container}>
       <div className={`pt-6 ${styles.wrapCenter}`}>
-        <h3 className='pb-6 text text_type_main-medium'>Восстановление пароля</h3>
+        <h3 className='pb-6 text text_type_main-medium'>
+          Восстановление пароля
+        </h3>
         <form
           className={`pb-15 ${styles.form}`}
           name='login'
           onSubmit={onSubmit}
-          data-testid="reset-form"
+          data-testid='reset-form'
         >
           <div className='pb-6'>
             <Input
@@ -69,29 +77,44 @@ export const ForgotPasswordUI: FC<PageUIProps> = ({
               error={!!(touched && error)}
               errorText={touched ? error : ''}
               size='default'
-              data-testid="email-input"
+              data-testid='email-input'
               onBlur={onBlur}
             />
           </div>
           <div className={`pb-6 ${styles.button}`}>
-            <Button type='primary' size='medium' htmlType='submit' data-testid="reset-button">
+            <Button
+              type='primary'
+              size='medium'
+              htmlType='submit'
+              data-testid='reset-button'
+            >
               Восстановить
             </Button>
           </div>
           {(errorText || error) && (
-            <p className={`${styles.error} text text_type_main-default pb-6`} data-testid="error-message">
+            <p
+              className={`${styles.error} text text_type_main-default pb-6`}
+              data-testid='error-message'
+            >
               {error || errorText}
             </p>
           )}
           {success && (
-            <p className={`${styles.success} text text_type_main-default pb-6`} data-testid="success-message">
+            <p
+              className={`${styles.success} text text_type_main-default pb-6`}
+              data-testid='success-message'
+            >
               {success}
             </p>
           )}
         </form>
         <div className={`${styles.question} text text_type_main-default pb-6`}>
           Вспомнили пароль?
-          <Link to={'/login'} className={`pl-2 ${styles.link}`} data-testid="login-link">
+          <Link
+            to={'/login'}
+            className={`pl-2 ${styles.link}`}
+            data-testid='login-link'
+          >
             Войти
           </Link>
         </div>

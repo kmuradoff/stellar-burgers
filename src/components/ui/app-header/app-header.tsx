@@ -10,7 +10,10 @@ import {
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName, handleLogout }) => (
+export const AppHeaderUI: FC<TAppHeaderUIProps> = ({
+  userName,
+  handleLogout
+}) => (
   <header className={styles.header}>
     <nav className={`${styles.menu} p-4`}>
       <div className={styles.menu_part_left}>
@@ -53,7 +56,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName, handleLogout }) =
             <button
               className={`text text_type_main-default ml-2 ${styles.logout_button}`}
               onClick={handleLogout}
-              data-testid="logout-button"
+              data-testid='logout-button'
             >
               Выход
             </button>
