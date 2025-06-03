@@ -11,7 +11,7 @@ import { ResetPasswordUIProps } from './type';
 export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
   errorText,
   password,
-  setPassword,
+  setValue,
   handleSubmit,
   token,
   setToken
@@ -25,11 +25,7 @@ export const ResetPasswordUI: FC<ResetPasswordUIProps> = ({
         onSubmit={handleSubmit}
       >
         <div className='pb-6'>
-          <PasswordInput
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            name='password'
-          />
+          <PasswordInput onChange={setValue} value={password} name='password' />
         </div>
         <div className='pb-6'>
           <Input

@@ -7,12 +7,19 @@
 }
 
 .elements {
-  min-height: 100px;
-
-  overflow-y: scroll;
+  min-height: 80px;
+  max-height: 464px;
+  overflow-y: auto;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.elements.dragOver {
+  background: rgba(76, 76, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: inset 0 0 10px rgba(76, 76, 255, 0.3);
 }
 
 .total {
@@ -43,10 +50,6 @@
   border-radius: var(--common-border-radius-s);
   background: var(--background-element);
   min-height: 80px;
-  font-family: 'Jet Brains Mono';
-  font-size: 16px;
-  line-height: 24px;
-  color: #f2f2f3;
   margin-left: 44px;
 }
 
